@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skcc.hoeuni.security.mapper.UserMapper">
+
+	<select id="getUser" parameterType="String" resultType="User">
+		SELECT USERNAME, PASSWORD, NAME, IS_ACCOUNT_NON_EXPIRED, IS_ACCOUNT_NON_LOCKED, IS_CREDENTIALS_EXPIRED, IS_ENABLED
+		FROM USER
+		WHERE USERNAME = #{username}
+	</select>
+
+	<select id="getAuthority" parameterType="String" resultType="String">
+		SELECT AUTHORITY_NAME
+		FROM AUTHORITY
+		WHERE USERNAME = #{username}
+	</select>
+	
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO USER (USERNAME, PASSWORD, NAME, IS_ACCOUNT_NON_EXPIRED, IS_ACCOUNT_NON_LOCKED, IS_CREDENTIALS_EXPIRED, IS_ENABLED) 
+		VALUES (#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
+	</insert>
+	
+	<insert id="insertAuthority" parameterType="org.springframework.security.core.GrantedAuthority">
+		INSERT INTO AUTHORITY (USERNAME, AUTHORITY_NAME) 
+		VALUES 
+		    <foreach item="authority" index="index" collection="authorities" separator=","> 
+		        (#{username}, #{authority}) 
+		    </foreach>
+	</insert>
+	
+	<delete id="deleteUser" parameterType="String"> 
+	    DELETE FROM USER WHERE USERNAME = #{username}
+	</delete> 
+	
+	<delete id="deleteAuthority" parameterType="String"> 
+	    DELETE FROM AUTHORITY WHERE USERNAME = #{username} 
+	</delete>
+
+</mapper>

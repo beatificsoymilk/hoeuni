@@ -1,0 +1,26 @@
+spring:
+  profiles :
+    active : local 
+  application:
+    name: hoeuni
+
+  mybatis:
+    mapper-locations : "classpath*:mapper/oracle/**/*.xml"
+    
+server:
+  port: 8080
+  
+logging:
+  level:
+    org.springframework.boot: INFO
+    ROOT: INFO
+    
+---
+spring:
+  profiles : local
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/orcl
+    username: daram
+    password: daram
+    driver-class-name: oracle.jdbc.OracleDriver
+
