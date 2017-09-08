@@ -18,11 +18,11 @@
 		VALUES (#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
 	</insert>
 	
-	<insert id="insertAuthority" parameterType="org.springframework.security.core.GrantedAuthority">
+	<insert id="insertAuthority" parameterType="User">
 		INSERT INTO AUTHORITY (USERNAME, AUTHORITY_NAME) 
 		VALUES 
-		    <foreach item="authority" index="index" collection="authorities" separator=","> 
-		        (#{username}, #{authority}) 
+		    <foreach item="role" index="index" collection="roles" separator=","> 
+		        (#{username}, #{role}) 
 		    </foreach>
 	</insert>
 	

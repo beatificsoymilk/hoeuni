@@ -11,8 +11,8 @@ import com.skcc.hoeuni.security.vo.User;
 public interface UserMapper {
 
 	public User getUser(String username); 
-	public List<String> getAuthority(String username);
-	public void insertUser(GrantedAuthority user);
+	public List<String> listAuthority(String username);
+	public void insertUser(User user);
 	public void insertAuthority(User user);
 	public void deleteUser(String username);
 	public void deleteAuthority(String username);
