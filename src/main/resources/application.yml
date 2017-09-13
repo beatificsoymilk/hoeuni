@@ -4,23 +4,26 @@ spring:
   application:
     name: hoeuni
 
-  mybatis:
-    mapper-locations : "classpath*:mapper/oracle/**/*.xml"
+mybatis:
+  mapper-locations : "classpath*:mapper/oracle/**/*.xml"
+  config-location : "classpath:mybatis-configuration.xml" 
     
 server:
   port: 8080
   
 logging:
   level:
+    com.skcc.hoeuni: DEBUG
     org.springframework.boot: INFO
+    org.springframework.security: DEBUG
     ROOT: INFO
     
 ---
 spring:
   profiles : local
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521/orcl
-    username: daram
-    password: daram
-    driver-class-name: oracle.jdbc.OracleDriver
+#  datasource:
+#    url: jdbc:oracle:thin:@localhost:1521/orcl
+#    username: daram
+#    password: daram
+#    driver-class-name: oracle.jdbc.OracleDriver
 

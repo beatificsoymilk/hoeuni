@@ -7,24 +7,31 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @SuppressWarnings("serial")
 @Data
+@ToString
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class User implements UserDetails {
 
-	private String username;
-	private String password;
+	@NonNull private String username;
+	@NonNull private String password;
 	
-	private boolean isAccountNonExpired;
-	private boolean isAccountNonLocked;
-	private boolean isCredentialsNonExpired;
-	private boolean isEnabled;
+	@NonNull private boolean isAccountNonExpired;
+	@NonNull private boolean isAccountNonLocked;
+	@NonNull private boolean isCredentialsNonExpired;
+	@NonNull private boolean isEnabled;
 	
 	private Collection<GrantedAuthority>  authorities;
 	private Collection<String> roles;
 	
-	private String name;
+	@NonNull private String name;
 	
 	public void setRoles(Collection<String> roles) {
 		this.roles = roles;

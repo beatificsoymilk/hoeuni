@@ -18,14 +18,14 @@ import com.skcc.hoeuni.HoeuniApplication;
 import com.skcc.hoeuni.security.mapper.UserMapper;
 import com.skcc.hoeuni.security.vo.User;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = HoeuniApplication.class)
-@WebAppConfiguration
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest(classes = HoeuniApplication.class)
+//@WebAppConfiguration
 public class UserMapperTest {
 	@Autowired
 	UserMapper userMapper;
 
-	@Test
+//	@Test
 	public void readUserTest() {
 		User user = userMapper.getUser("beatific");
 		assertThat("beatific", is(user.getUsername()));
@@ -33,11 +33,11 @@ public class UserMapperTest {
 		assertThat("1234567", is(user.getPassword()));
 	}
 
-	@Test
+//	@Test
 	public void readAuthorityTest() {
-		List<String> authorities = userMapper.getAuthority("beatific");
+		List<String> authorities = userMapper.listAuthority("beatific");
 		assertThat(authorities, hasItems("ADMIN", "USER"));
-		authorities = userMapper.getAuthority("test");
+		authorities = userMapper.listAuthority("test");
 		assertThat(authorities, hasItem("USER"));
 	}
 }

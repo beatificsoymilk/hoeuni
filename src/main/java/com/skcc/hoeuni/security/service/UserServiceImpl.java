@@ -1,5 +1,6 @@
 package com.skcc.hoeuni.security.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,32 +8,48 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.skcc.hoeuni.security.mapper.UserMapper;
 import com.skcc.hoeuni.security.vo.User;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+@Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+//	@Autowired
 	UserMapper userMapper;
 
-	@Getter private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	@Getter
+	private final PasswordEncoder passwordEncoder;
+	
+	public UserServiceImpl() {
+		passwordEncoder = new BCryptPasswordEncoder(); 
+	}
 		
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		User user = userMapper.getUser(username);
+		log.info("username {}", username);
+//		User user = userMapper.getUser(username);
+		User user = new User("beatific", passwordEncoder.encode("1234567"), true, true, true, true, "beatificho");
 		if(user == null) throw new UsernameNotFoundException("username[" + username + "]");
 		
 		user.setRoles(getRoles(username));
+		log.info("user {}", user);
 		return user;
 	}
 
 	public Collection<String> getRoles(String username) {
 
-		return userMapper.listAuthority(username);
+		Collection<String> roles = new ArrayList<>();
+		roles.add("ADMIN");
+		roles.add("USER");
+//		return userMapper.listAuthority(username);
+		return roles;
 				
 	}
 
