@@ -15,7 +15,7 @@ logging:
   level:
     com.skcc.hoeuni: DEBUG
     org.springframework.boot: INFO
-    org.springframework.security: DEBUG
+    org.springframework.security: INFO
     ROOT: INFO
     
 ---
