@@ -21,9 +21,9 @@ logging:
 ---
 spring:
   profiles : local
-#  datasource:
-#    url: jdbc:oracle:thin:@localhost:1521/orcl
-#    username: daram
-#    password: daram
-#    driver-class-name: oracle.jdbc.OracleDriver
+  datasource:
+    url: jdbc:oracle:thin:@203.235.211.113:1521/ARCH
+    username: stem
+    password: stem123
+    driver-class-name: oracle.jdbc.OracleDriver
 

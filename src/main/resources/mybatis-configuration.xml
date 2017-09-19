@@ -8,4 +8,7 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="logImpl" value="NO_LOGGING"/>
     </settings>
+    <typeAliases>
+        <package name="com.skcc.hoeuni.security.vo"/>
+    </typeAliases>
 </configuration>

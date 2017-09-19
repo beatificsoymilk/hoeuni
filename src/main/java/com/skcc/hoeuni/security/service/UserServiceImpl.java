@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UserServiceImpl implements UserService {
 
-//	@Autowired
+	@Autowired
 	UserMapper userMapper;
 
 	@Getter
@@ -34,12 +34,13 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		log.info("username {}", username);
-//		User user = userMapper.getUser(username);
-		User user = new User("beatific", passwordEncoder.encode("1234567"), true, true, true, true, "beatificho");
+		User user = userMapper.getUser(username);
+		log.info("user {}", user);
+//		User user = new User("beatific", passwordEncoder.encode("1234567"), true, true, true, true, "beatificho");
+		
 		if(user == null) throw new UsernameNotFoundException("username[" + username + "]");
 		
 		user.setRoles(getRoles(username));
-		log.info("user {}", user);
 		return user;
 	}
 

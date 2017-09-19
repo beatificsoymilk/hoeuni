@@ -3,10 +3,10 @@
 
 	<select id="getUser" parameterType="String" resultType="User">
 		SELECT USERNAME, PASSWORD, NAME, IS_ACCOUNT_NON_EXPIRED, IS_ACCOUNT_NON_LOCKED, IS_CREDENTIALS_EXPIRED, IS_ENABLED
-		FROM USER
+		FROM USER_INFO
 		WHERE USERNAME = #{username}
 	</select>
-
+	
 	<select id="getAuthority" parameterType="String" resultType="String">
 		SELECT AUTHORITY_NAME
 		FROM AUTHORITY
@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="insertUser" parameterType="User">
-		INSERT INTO USER (USERNAME, PASSWORD, NAME, IS_ACCOUNT_NON_EXPIRED, IS_ACCOUNT_NON_LOCKED, IS_CREDENTIALS_EXPIRED, IS_ENABLED) 
+		INSERT INTO USER_INFO (USERNAME, PASSWORD, NAME, IS_ACCOUNT_NON_EXPIRED, IS_ACCOUNT_NON_LOCKED, IS_CREDENTIALS_EXPIRED, IS_ENABLED) 
 		VALUES (#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
 	</insert>
 	

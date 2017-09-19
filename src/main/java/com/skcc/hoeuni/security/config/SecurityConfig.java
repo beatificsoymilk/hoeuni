@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		    .and()
 			.authorizeRequests().anyRequest().authenticated()
 //		    .antMatchers("/admin").access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")
-//			.antMatchers("/uaa").permitAll()
+//			.antMatchers("/meta").permitAll()
 //			.antMatchers("/**").authenticated()
 			.and()
 			.formLogin().loginPage(loginPage)
@@ -70,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService).passwordEncoder(userService.getPasswordEncoder());
+//		auth.userDetailsService(userService);
 	}
 
 }

@@ -7,31 +7,31 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @SuppressWarnings("serial")
-@Data
 @ToString
-@AllArgsConstructor
 @RequiredArgsConstructor
 public class User implements UserDetails {
 
-	@NonNull private String username;
-	@NonNull private String password;
+	@NonNull @Getter @Setter private String username;
+	@NonNull @Getter @Setter private String password;
 	
-	@NonNull private boolean isAccountNonExpired;
-	@NonNull private boolean isAccountNonLocked;
-	@NonNull private boolean isCredentialsNonExpired;
-	@NonNull private boolean isEnabled;
+	@NonNull @Setter private String isAccountNonExpired;
+	@NonNull @Setter private String isAccountNonLocked;
+	@NonNull @Setter private String isCredentialsNonExpired;
+	@NonNull @Setter private String isEnabled;
 	
-	private Collection<GrantedAuthority>  authorities;
-	private Collection<String> roles;
+	@Getter @Setter private Collection<GrantedAuthority>  authorities;
+	@Getter private Collection<String> roles;
 	
-	@NonNull private String name;
+	@NonNull @Getter @Setter private String name;
+	
+	
 	
 	public void setRoles(Collection<String> roles) {
 		this.roles = roles;
@@ -39,5 +39,22 @@ public class User implements UserDetails {
 		authorities = new ArrayList<>();
 		roles.forEach((authority) -> authorities.add(new SimpleGrantedAuthority(authority)));
 	}
+
+	public boolean isAccountNonExpired() {
+		return "Y".equals(isAccountNonExpired);
+	}
+
+	public boolean isAccountNonLocked() {
+		return "Y".equals(isAccountNonLocked);
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return "Y".equals(isCredentialsNonExpired);
+	}
+
+	public boolean isEnabled() {
+		return "Y".equals(isEnabled);
+	}
+
 		
 }
