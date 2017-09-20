@@ -22,8 +22,5 @@ logging:
 spring:
   profiles : local
   datasource:
-    url: jdbc:oracle:thin:@203.235.211.113:1521/ARCH
-    username: stem
-    password: stem123
-    driver-class-name: oracle.jdbc.OracleDriver
+    
 
